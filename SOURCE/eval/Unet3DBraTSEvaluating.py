@@ -73,9 +73,7 @@ def eval(DATA_ROOT_PATH, CHECKPOINT_PATH, BATCH_SIZE, D, H, W):
     # Thiết lập thiết bị và mô hình
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = UNet3D(in_channels=4, num_classes=3).to(device) 
-
-    if torch.cuda.device_count() > 1:
-        model = torch.nn.DataParallel(model)
+    model = torch.nn.DataParallel(model)
 
     # Load checkpoint
     checkpoint = torch.load(CHECKPOINT_PATH,weights_only=True, map_location=device)

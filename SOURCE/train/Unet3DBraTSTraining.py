@@ -63,8 +63,7 @@ def train(DATA_ROOT_PATH, CHECKPOINT_PATH, OUTPUT_PATH, NUM_EPOCHS, BATCH_SIZE, 
     # Model, Loss, Optimizer
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = UNet3D(in_channels=4, num_classes=3).to(device) 
-    if torch.cuda.device_count() > 1:
-        model = torch.nn.DataParallel(model)
+    model = torch.nn.DataParallel(model)
     
     optimizer = AdamW(model.parameters(), lr=LR)
     criterion = monai.losses.DiceCELoss(sigmoid=True, squared_pred=True, reduction="mean")

@@ -127,8 +127,7 @@ def overlay_mask(modalities, prediction):
 def predict(folder_path, checkpoint_path, output_dir):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = UNet3D(in_channels=4, num_classes=3).to(device) 
-    if torch.cuda.device_count() > 1:
-        model = torch.nn.DataParallel(model)
+    model = torch.nn.DataParallel(model)
 
     # Load checkpoint   
     checkpoint = torch.load(checkpoint_path, weights_only=True, map_location=device)
