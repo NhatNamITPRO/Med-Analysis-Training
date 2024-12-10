@@ -147,3 +147,9 @@ Chạy câu lệnh bên dưới để thực hiện testing Unet2D trên tập I
 ```bash
 python main.py --model_name Unet2D --mode testing --input_path ./data/isic/images/ISIC_0000000.jpg --model_checkpoint ./checkpoints/Unet2D_ISIC2018_epoch_50_model.pth --output_dir ./output --H 256 --W 256
 ```
+## 9. APP DEMO
+Di chuyển vào thư mục app, thư mục app chưa các link github kho lưu trữ source của client, server và các model
+Bạn có thể truy cập vào link app đã deploy https://med-analysis-lyart.vercel.app/
+```bash
+cd app
+```
