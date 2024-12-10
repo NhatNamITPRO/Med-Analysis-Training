@@ -84,7 +84,7 @@ pip install --upgrade pip
 ```
 Danh sách các gói đã cài đặt sẽ được hiển thị. Hãy kiểm tra xem tất cả các gói trong `requirements.txt` đã được cài đặt.
 
-## 7. download các model checkpoint
+## 7. Download các model checkpoint
 
 Di chuyển vào thư mục SETUP và chạy file main.py để tiến hành download các model checkpoint
 ```bash
@@ -92,7 +92,7 @@ cd SETUP
 python main.py
 ```
 
-## 7. Sử dụng source
+## 8. Bắt đầu sử dụng
 
 Di chuyển ra ngoài và vào thư mục SOURCE và chạy file main.py theo các hướng dẫn dưới đây hoặc tùy chỉnh
 Kết quả được hiển thị ở màn hình console hoặc folder output
