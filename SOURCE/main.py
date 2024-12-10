@@ -1,4 +1,5 @@
 import argparse
+import os
 from train import Segformer3DBraTSTraining,Unet3DBraTSTraining,SegformerISICTraining,Unet2DISICTraining
 from eval import Segformer3DBraTSEvaluating,Unet3DBraTSEvaluating,SegformerISICEvaluating,Unet2DISICEvaluating
 from test import Segformer3DBraTSTesting,Unet3DBraTSTesting,SegformerISICTesting,Unet2DISICTesting
@@ -23,6 +24,8 @@ def main():
         parser.error(f"--dataset_path is required for {args.mode}")
     if args.mode == "testing" and args.input_path is None:
         parser.error(f"--input_path is required for {args.mode}")
+    if not os.path.exists(args.output_dir):
+            os.makedirs(args.output_dir)
     # Xử lý logic dựa trên chế độ (`mode`)
     if args.mode == "training":
         # Gọi class `Segformer3DBraTSTraining` với các tham số từ `args`
