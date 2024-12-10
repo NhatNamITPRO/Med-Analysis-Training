@@ -48,8 +48,8 @@ def evaluate(model, dataloader, device):
             dices = dice_metric.get_buffer()[:, i].cpu().numpy()
             ious = iou_metric.get_buffer()[:, i].cpu().numpy()
 
-            # dices = dices[dices > 0.4]
-            # ious = ious[ious > 0.4] 
+            dices = dices[dices > 0.2]
+            ious = ious[ious > 0.2] 
             metrics[label] = {"Dice": np.median(dices), "mIoU": np.median(ious)}
 
         # Hiển thị kết quả
