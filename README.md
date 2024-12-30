@@ -4,9 +4,9 @@
 This repository implements U-Net 2D, U-Net 3D, Segformer, and Segformer 3D models to segment lesions in dermoscopy images and MRI scans.  
 These models are trained and evaluated on ISIC2018 and BraTS2021
 The project results are as follows:
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](/SOURCE/assets/1.jpg)
+![alt text](/SOURCE/assets/2.jpg)
+![alt text](/SOURCE/assets/3.jpg)
 ---
 
 ## Environment Setup Guide
