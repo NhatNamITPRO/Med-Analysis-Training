@@ -1,6 +1,5 @@
 
 # Hướng Dẫn Thiết Lập Môi Trường
-
 Dự án này yêu cầu sử dụng Python và các gói cần thiết được liệt kê trong tệp `requirements.txt`. Dưới đây là các bước để thiết lập môi trường và cài đặt các gói.
 
 ## 1. Kiểm tra phiên bản Python
