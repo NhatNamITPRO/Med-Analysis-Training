@@ -1,154 +1,136 @@
+# Medical Image Segmentation with U-Net and Segformer
 
-# Hướng Dẫn Thiết Lập Môi Trường
-Dự án này yêu cầu sử dụng Python và các gói cần thiết được liệt kê trong tệp `requirements.txt`. Dưới đây là các bước để thiết lập môi trường và cài đặt các gói.
+## Overview
+This repository implements U-Net 2D, U-Net 3D, Segformer, and Segformer 3D models to segment lesions in dermoscopy images and MRI scans.  
+These models are trained and evaluated on ISIC2018 and BraTS2021
+The project results are as follows:
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+---
 
-## 1. Kiểm tra phiên bản Python
+## Environment Setup Guide
+This project requires Python and essential packages listed in the `requirements.txt` file. Follow the steps below to set up the environment and install the dependencies.
 
-Đảm bảo rằng bạn đã cài đặt Python 3.10 trở lên trên hệ thống của mình.  
-Kiểm tra bằng lệnh:
+### 1. Check Python Version
+Ensure that Python 3.10 or higher is installed on your system. Check the version using:
 
 ```bash
 python --version
 ```
 
-Hoặc (trên một số hệ thống):
+or on some systems:
 
 ```bash
 python3 --version
 ```
 
-## 2. Tạo môi trường ảo
-
-### Trên Windows:
+### 2. Create a Virtual Environment
+#### On Windows:
 ```bash
 python -m venv venv
 ```
 
-### Trên Linux/MacOS:
+#### On Linux/MacOS:
 ```bash
 python3 -m venv venv
 ```
 
-Lệnh trên sẽ tạo một thư mục `env` chứa môi trường ảo.
+This will create a `venv` folder containing the virtual environment.
 
-## 3. Kích hoạt môi trường ảo
-
-### Trên Windows:
+### 3. Activate the Virtual Environment
+#### On Windows:
 ```bash
 venv\Scripts\activate
 ```
 
-### Trên Linux/MacOS:
+#### On Linux/MacOS:
 ```bash
 source venv/bin/activate
 ```
 
-Sau khi kích hoạt thành công, bạn sẽ thấy tên môi trường ảo xuất hiện ở đầu dòng lệnh, ví dụ: `(env)`.
+Once activated, you will see the virtual environment name (e.g., `(venv)`) at the beginning of the command line.
 
-## 4. Cài đặt các gói
-
-Đảm bảo rằng tệp `requirements.txt` có trong thư mục làm việc của bạn. Chạy lệnh sau để cài đặt các gói:
+### 4. Install Required Packages
+Make sure the `requirements.txt` file is in your working directory. Install the dependencies using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 5. Kiểm tra cài đặt
-
-Đảm bảo rằng tất cả các gói đã được cài đặt bằng cách chạy lệnh sau:
+### 5. Verify Installation
+Check that all required packages are installed by running:
 
 ```bash
 pip freeze
 ```
 
-Danh sách các gói đã cài đặt sẽ được hiển thị. Hãy kiểm tra xem tất cả các gói trong `requirements.txt` đã được cài đặt.
+Compare the installed packages with those listed in `requirements.txt`.
 
-## 6. Vô hiệu hóa môi trường ảo (Khi hoàn tất)
-
-Khi không còn sử dụng, bạn có thể thoát khỏi môi trường ảo bằng lệnh:
+### 6. Deactivate the Virtual Environment (After Use)
+To exit the virtual environment, run:
 
 ```bash
 deactivate
 ```
 
----
-
-### Lưu ý
-
-- Hãy đảm bảo sử dụng đúng phiên bản Python mà dự án yêu cầu.
-- Nếu gặp lỗi trong quá trình cài đặt, hãy kiểm tra lại tệp `requirements.txt` hoặc cập nhật `pip` lên phiên bản mới nhất:
+### Notes:
+- Use the correct Python version as required by the project.
+- If you encounter installation errors, ensure `pip` is up to date:
 
 ```bash
 pip install --upgrade pip
 ```
-Danh sách các gói đã cài đặt sẽ được hiển thị. Hãy kiểm tra xem tất cả các gói trong `requirements.txt` đã được cài đặt.
 
-## 7. Download các model checkpoint
+---
 
-Di chuyển vào thư mục SETUP và chạy file main.py để tiến hành download các model checkpoint
+## 7. Download Model Checkpoints
+Navigate to the `SETUP` folder and run `main.py` to download model checkpoints:
+
 ```bash
 cd SETUP
 python main.py
 ```
 
-## 8. Bắt đầu sử dụng
+---
 
-Di chuyển ra ngoài và vào thư mục SOURCE và chạy file main.py theo các hướng dẫn dưới đây hoặc tùy chỉnh
-Kết quả được hiển thị ở màn hình console hoặc folder output
-```bash
-cd ../SOURCE
-```
-Chạy câu lệnh bên dưới để thực hiện training Segformer3D trên tập BraTS2021
+## 8. Usage
+Move to the `SOURCE` folder and run `main.py` to train, evaluate, or test the models. The results will be displayed in the console or saved in the output folder.
+
+### Example Commands:
+#### Training Segformer3D on BraTS2021:
 ```bash
 python main.py --model_name Segformer3D --mode training --dataset_path ./data/brats --model_checkpoint ./checkpoints/Segformer3D_BraTS2021_epoch_50_model.pth --output_dir ./output --epochs 53 --batch_size 1
 ```
-Chạy câu lệnh bên dưới để thực hiện evaluating Segformer3D trên tập BraTS2021
+
+#### Evaluating Segformer3D on BraTS2021:
 ```bash
 python main.py --model_name Segformer3D --mode evaluating --dataset_path ./data/brats --model_checkpoint ./checkpoints/Segformer3D_BraTS2021_epoch_50_model.pth --output_dir ./output --batch_size 1
 ```
-Chạy câu lệnh bên dưới để thực hiện testing Segformer3D trên tập BraTS2021
+
+#### Testing Segformer3D on BraTS2021:
 ```bash
 python main.py --model_name Segformer3D --mode testing --input_path ./data/brats/BraTS2021_00003 --model_checkpoint ./checkpoints/Segformer3D_BraTS2021_epoch_50_model.pth --output_dir ./output
 ```
-Chạy câu lệnh bên dưới để thực hiện training Unet3D trên tập BraTS2021
-```bash
-python main.py --model_name Unet3D --mode training --dataset_path ./data/brats --model_checkpoint ./checkpoints/Unet3D_BraTS2021_epoch_50_model.pth --output_dir ./output --epochs 53 --batch_size 1
-```
-Chạy câu lệnh bên dưới để thực hiện evaluating Unet3D trên tập BraTS2021
-```bash
-python main.py --model_name Unet3D --mode evaluating --dataset_path ./data/brats --model_checkpoint ./checkpoints/Unet3D_BraTS2021_epoch_50_model.pth --output_dir ./output --batch_size 1
-```
-Chạy câu lệnh bên dưới để thực hiện testing Unet3D trên tập BraTS2021
-```bash
-python main.py --model_name Unet3D --mode testing --input_path ./data/brats/BraTS2021_00003 --model_checkpoint ./checkpoints/Unet3D_BraTS2021_epoch_50_model.pth --output_dir ./output
-```
-Chạy câu lệnh bên dưới để thực hiện training Segformer trên tập ISIC2018
-```bash
-python main.py --model_name Segformer --mode training --dataset_path ./data/isic --model_checkpoint ./checkpoints/Segformer_ISIC2018_epoch_50_model.pth --output_dir ./output --epochs 52 --batch_size 1 --H 512 --W 512
-```
-Chạy câu lệnh bên dưới để thực hiện evaluating Segformer trên tập ISIC2018
-```bash
-python main.py --model_name Segformer --mode evaluating --dataset_path ./data/isic --model_checkpoint ./checkpoints/Segformer_ISIC2018_epoch_50_model.pth --output_dir ./output --batch_size 1 --H 512 --W 512
-```
-Chạy câu lệnh bên dưới để thực hiện testing Segformer trên tập ISIC2018
-```bash
-python main.py --model_name Segformer --mode testing --input_path ./data/isic/images/ISIC_0000000.jpg --model_checkpoint ./checkpoints/Segformer_ISIC2018_epoch_50_model.pth --output_dir ./output
-```
-Chạy câu lệnh bên dưới để thực hiện training Unet2D trên tập ISIC2018
+
+#### Training U-Net 2D on ISIC2018:
 ```bash
 python main.py --model_name Unet2D --mode training --dataset_path ./data/isic --model_checkpoint ./checkpoints/Unet2D_ISIC2018_epoch_50_model.pth --output_dir ./output --epochs 52 --batch_size 1 --H 256 --W 256
 ```
-Chạy câu lệnh bên dưới để thực hiện evaluating Unet2D trên tập ISIC2018
-```bash
-python main.py --model_name Unet2D --mode evaluating --dataset_path ./data/isic --model_checkpoint ./checkpoints/Unet2D_ISIC2018_epoch_50_model.pth --output_dir ./output --batch_size 1 --H 256 --W 256
-```
-Chạy câu lệnh bên dưới để thực hiện testing Unet2D trên tập ISIC2018
+
+#### Testing U-Net 2D on ISIC2018:
 ```bash
 python main.py --model_name Unet2D --mode testing --input_path ./data/isic/images/ISIC_0000000.jpg --model_checkpoint ./checkpoints/Unet2D_ISIC2018_epoch_50_model.pth --output_dir ./output --H 256 --W 256
 ```
-## 9. APP DEMO
-Di chuyển vào thư mục app, thư mục app chưa các link github kho lưu trữ source của client, server và các model
-Bạn có thể truy cập vào link app đã deploy https://med-analysis-lyart.vercel.app/
+
+Additional commands for other models and tasks are structured similarly.
+
+---
+
+## 9. App Demo
+Navigate to the `app` folder, which contains links to the client, server, and model repositories. You can also access the deployed app at:  
+[Medical Analysis App](https://med-analysis-lyart.vercel.app/)
+
 ```bash
 cd app
 ```
